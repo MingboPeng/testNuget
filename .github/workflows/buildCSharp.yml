@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: "Checkout Master Branch"
         uses: actions/checkout@v2
-        with:
-          ref: master
       
 
       - name: unzip artifacts
