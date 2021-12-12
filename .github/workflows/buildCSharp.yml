@@ -17,14 +17,14 @@ jobs:
 
       - name: unzip artifacts
         run: |
-          unzip CSharp_Windows32.zip ".\x86"
-          
-          $Found = Get-ChildItem -Filter (".\x86\*.nupkg")
+          unzip CSharp_Windows32.zip "x86"
+          ls
+          $Found = Get-ChildItem -Filter ("x86\*.nupkg")
           foreach ($entry in $Found){
             Rename-Item -Path $entry.FullName -NewName ($entry.Name.Replace('.nupkg','.zip'))
           }
 
-          unzip CSharp_Windows64.zip ".\x64"
+          unzip CSharp_Windows64.zip "x64"
           ls
       
 
