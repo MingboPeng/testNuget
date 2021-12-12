@@ -42,14 +42,17 @@ jobs:
 
       - name: make a new nupkg for Windows 
         run: |
-          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.3.3.1.nupkg
+          $VERSION = (Get-Item x64\package\lib\netstandard2.0\x64\OpenStudio.dll).VersionInfo.FileVersion
+          echo $VERSION
+          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.$VERSION.nupkg
+          cp *.nupkg OpenStudio.nupkg
           ls
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: nugetPackage
-          path: OpenStudio.3.3.1.nupkg
+          path: OpenStudio.nupkg
 
       - name: Tests on Windows
         run: |
