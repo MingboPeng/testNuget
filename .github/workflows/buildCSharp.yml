@@ -42,14 +42,14 @@ jobs:
 
       - name: make a new nupkg for Windows 
         run: |
-          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.3.3.1.nupkg
+          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.nupkg
           ls
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: nugetPackage
-          path: OpenStudio.3.3.1.nupkg
+          path: OpenStudio.nupkg
 
       - name: Tests on Windows
         run: |
