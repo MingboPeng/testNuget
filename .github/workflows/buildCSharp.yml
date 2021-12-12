@@ -17,7 +17,7 @@ jobs:
 
       - name: unzip artifacts
         run: |
-          unzip CSharp_Windows32.zip "x86"
+          unzip CSharp_Windows32.zip -o "x86"
           ls
           $Found = Get-ChildItem -Filter ("x86\*.nupkg")
           foreach ($entry in $Found){
