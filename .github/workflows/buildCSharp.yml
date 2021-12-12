@@ -18,15 +18,11 @@ jobs:
       - name: unzip artifacts
         run: |
           Expand-Archive CSharp_Windows32.zip -DestinationPath x86
+          Expand-Archive CSharp_Windows64.zip -DestinationPath x64
+          
+          Expand-Archive x86\*.nupkg -DestinationPath x86\package
+          Expand-Archive x64\*.nupkg -DestinationPath x64\package
           ls -R
-          $Found = Get-ChildItem -Filter ("x86\*.nupkg")
-          foreach ($entry in $Found){
-            Rename-Item -Path $entry.FullName -NewName ($entry.Name.Replace('.nupkg','.zip'))
-          }
-
-          cd x86
-          Expand-Archive *.zip -DestinationPath x86
-          ls
       
 
       
