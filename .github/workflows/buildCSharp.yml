@@ -42,12 +42,19 @@ jobs:
 
       - name: make a new nupkg for Windows 
         run: |
-          Compress-Archive -U -Path x64\package -DestinationPath OpenStudio.3.3.1
+          Compress-Archive -U -Path x64\package -DestinationPath OpenStudio.3.3.1.nupkg
           ls
 
 
+      - name: Tests on Windows
+        run: |
+          cd csharp/examples/OpenStudio.Tests/
+          dotnet remove package OpenStudio 
+          dotnet restore OpenStudio.Tests.csproj
+          dotnet add OpenStudio.Tests.csproj package OpenStudio -s "./../../../"
 
-      
+          dotnet test OpenStudio.Tests.csproj /p:Platform=x86
+          dotnet clean
+          dotnet test OpenStudio.Tests.csproj /p:Platform=x64
 
-      
 
