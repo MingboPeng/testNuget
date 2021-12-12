@@ -37,7 +37,7 @@ jobs:
 
           cp csharp\OpenStudio.targets x64\package\build\netstandard2.0\
           cp csharp\OpenStudio.targets x64\package\build\net45\
-          cd x64\package\build
+          cd x64\package
           ls -R
 
       - name: make a new nupkg for Windows 
@@ -45,6 +45,11 @@ jobs:
           Compress-Archive -U -Path x64\package -DestinationPath OpenStudio.3.3.1.nupkg
           ls
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: nugetPackage
+          path: OpenStudio.3.3.1.nupkg
 
       - name: Tests on Windows
         run: |
