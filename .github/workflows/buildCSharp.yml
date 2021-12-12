@@ -1,0 +1,31 @@
+name: buildCSharpSDK
+
+jobs:
+  Merge_WindowsPackages:
+    name: "Merge x86 and x64 nuget packages for windows"
+    runs-on: windows-latest
+    timeout-minutes: 20
+    needs: build-csharp
+
+    steps:
+      - name: "Checkout Master Branch"
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      
+
+      - name: unzip artifacts
+        run: |
+          unzip CSharp_Windows32.zip ".\x86"
+          
+          $Found = Get-ChildItem -Filter (".\x86\*.nupkg")
+          foreach ($entry in $Found){
+            Rename-Item -Path $entry.FullName -NewName ($entry.Name.Replace('.nupkg','.zip'))
+          }
+
+          unzip CSharp_Windows64.zip ".\x64"
+          ls
+      
+
+      
+
