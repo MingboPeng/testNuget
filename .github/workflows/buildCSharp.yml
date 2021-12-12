@@ -23,6 +23,14 @@ jobs:
           Expand-Archive x86\*.nupkg -DestinationPath x86\package
           Expand-Archive x64\*.nupkg -DestinationPath x64\package
           ls -R
+
+      - name: merge
+        run: |
+          mv x64\package\lib\*\OpenStudio.txt x64\package\lib\*\x64\OpenStudio.txt 
+          Rename-Item x64\package\lib x64\package\build
+
+
+
       
 
       
