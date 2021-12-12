@@ -42,14 +42,14 @@ jobs:
 
       - name: make a new nupkg for Windows 
         run: |
-          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.nupkg
+          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.3.3.1.nupkg
           ls
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: nugetPackage
-          path: OpenStudio.nupkg
+          path: OpenStudio.3.3.1.nupkg
 
       - name: Tests on Windows
         run: |
@@ -58,8 +58,10 @@ jobs:
           dotnet restore OpenStudio.Tests.csproj
           dotnet add OpenStudio.Tests.csproj package OpenStudio -s "./../../../"
 
-          dotnet test OpenStudio.Tests.csproj /p:Platform=x86
-          dotnet clean
+
           dotnet test OpenStudio.Tests.csproj /p:Platform=x64
+          dotnet clean
+          dotnet test OpenStudio.Tests.csproj /p:Platform=x86
+          
 
 
