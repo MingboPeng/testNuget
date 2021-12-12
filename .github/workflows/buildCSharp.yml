@@ -1,5 +1,9 @@
 name: buildCSharpSDK
 
+on:
+  push:
+    branches: [ master ]
+    
 jobs:
   Merge_WindowsPackages:
     name: "Merge x86 and x64 nuget packages for windows"
