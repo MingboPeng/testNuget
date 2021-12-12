@@ -9,7 +9,6 @@ jobs:
     name: "Merge x86 and x64 nuget packages for windows"
     runs-on: windows-latest
     timeout-minutes: 20
-    needs: build-csharp
 
     steps:
       - name: "Checkout Master Branch"
