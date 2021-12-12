@@ -35,8 +35,15 @@ jobs:
           mv x86\package\lib\netstandard2.0\x86 x64\package\build\netstandard2.0\x86
           mv x86\package\lib\net45\x86 x64\package\build\net45\x86
 
+          cp csharp\OpenStudio.targets x64\package\build\netstandard2.0\
+          cp csharp\OpenStudio.targets x64\package\build\net45\
           cd x64\package\build
           ls -R
+
+      - name: make a new nupkg for Windows 
+        run: |
+          Compress-Archive -U -Path x64\package -DestinationPath OpenStudio.3.3.1
+          ls
 
 
 
