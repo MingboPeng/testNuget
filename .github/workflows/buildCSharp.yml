@@ -26,8 +26,17 @@ jobs:
 
       - name: merge
         run: |
-          mv x64\package\lib\*\OpenStudio.txt x64\package\lib\*\x64\OpenStudio.txt 
-          Rename-Item x64\package\lib x64\package\build
+          mv x64\package\lib\netstandard2.0\OpenStudio.txt x64\package\lib\netstandard2.0\x64\OpenStudio.txt 
+          mv x64\package\lib\net45\OpenStudio.txt x64\package\lib\net45\x64\OpenStudio.txt 
+          mv x86\package\lib\netstandard2.0\OpenStudio.txt x86\package\lib\netstandard2.0\x86\OpenStudio.txt 
+          mv x86\package\lib\net45\OpenStudio.txt x86\package\lib\net45\x86\OpenStudio.txt 
+
+          mv x64\package\lib x64\package\build
+          mv x86\package\lib\netstandard2.0\x86 x64\package\build\netstandard2.0\x86
+          mv x86\package\lib\net45\x86 x64\package\build\net45\x86
+
+          cd x64\package\build
+          ls -R
 
 
 
