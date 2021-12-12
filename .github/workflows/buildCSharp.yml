@@ -42,7 +42,7 @@ jobs:
 
       - name: make a new nupkg for Windows 
         run: |
-          Compress-Archive -U -Path x64\package -DestinationPath OpenStudio.3.3.1.nupkg
+          Compress-Archive -U -Path x64\package\* -DestinationPath OpenStudio.3.3.1.nupkg
           ls
 
       - name: Upload artifact
