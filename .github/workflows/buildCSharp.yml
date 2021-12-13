@@ -26,7 +26,7 @@ jobs:
 
       - name: merge x86 into x64
         run: |
-          cp x64\package x64x86
+          cp x64\package x64x86 -r
           mv x64x86\lib x64x86\build
 
           mkdir x64x86\build\netstandard2.0\x64
