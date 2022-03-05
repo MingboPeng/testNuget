@@ -96,6 +96,4 @@ jobs:
           dotnet add OpenStudio.Tests.csproj package OpenStudio -s "./../../../"
           dotnet build /p:Platform=x64
           ls -R
-          cp ./nuget/runtimes/osx-x64/native/* ./bin/x64/Debug/net5/
-          ls ./bin/x64/Debug/net5/
           dotnet test OpenStudio.Tests.csproj -f NET5 /p:Platform=x64
