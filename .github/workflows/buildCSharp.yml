@@ -74,3 +74,29 @@ jobs:
           
 
 
+  Test_Mac:
+    name: "Test x64 nuget packages for macos and ubuntu"
+    runs-on: macos-10.15
+    timeout-minutes: 20
+    needs: build-csharp
+
+    steps:
+      - name: "Checkout Master Branch"
+        uses: actions/checkout@v2
+      
+      - name: unzip artifacts
+        run: |
+          unzip CSharp_macOS.zip -d ./nuget
+          mv ./nuget/build/Products/csharp/Release/*.nupkg ./nuget/
+          ls -R
+          
+      - name: Tests
+        run: |
+          cd csharp/examples/OpenStudio.Tests/
+          dotnet remove package OpenStudio 
+          dotnet restore OpenStudio.Tests.csproj
+          dotnet add OpenStudio.Tests.csproj package OpenStudio -s "./../../../nuget"
+          dotnet build /p:Platform=x64
+          ls -R
+          dotnet clean
+          dotnet test OpenStudio.Tests.csproj -f NET5 /p:Platform=x64
