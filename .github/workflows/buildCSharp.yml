@@ -85,7 +85,7 @@ jobs:
       
       - name: unzip artifacts
         run: |
-          unzip CSharp_macOS.zip -d ./nuget
+          unzip OpenStudio.3.3.1.nupkg -d ./nuget
           mv ./nuget/build/Products/csharp/Release/*.nupkg ./nuget/
           ls -R
           
@@ -94,8 +94,9 @@ jobs:
           cd csharp/examples/OpenStudio.Tests/
           dotnet remove package OpenStudio 
           dotnet restore OpenStudio.Tests.csproj
-          dotnet add OpenStudio.Tests.csproj package OpenStudio -s "./../../../nuget"
+          dotnet add OpenStudio.Tests.csproj package OpenStudio -s "./../../../"
           dotnet build /p:Platform=x64
           ls -R
-          dotnet clean
+          cp ./nuget/* ./bin/x64/Debug/net5/
+          ls ./bin/x64/Debug/net5/
           dotnet test OpenStudio.Tests.csproj -f NET5 /p:Platform=x64
