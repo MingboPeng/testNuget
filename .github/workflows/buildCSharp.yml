@@ -86,8 +86,7 @@ jobs:
       - name: unzip artifacts
         run: |
           unzip OpenStudio.3.3.1.nupkg -d ./nuget
-          mv ./nuget/build/Products/csharp/Release/*.nupkg ./nuget/
-          ls -R
+          ls ./nuget
           
       - name: Tests
         run: |
