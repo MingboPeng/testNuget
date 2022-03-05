@@ -78,7 +78,6 @@ jobs:
     name: "Test x64 nuget packages for macos and ubuntu"
     runs-on: macos-10.15
     timeout-minutes: 20
-    needs: build-csharp
 
     steps:
       - name: "Checkout Master Branch"
